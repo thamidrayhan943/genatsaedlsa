@@ -1,0 +1,371 @@
+/* CSS Variables */
+:root {
+    --background-dark: #000000;
+    --background-light: #ffffff;
+    --text-dark: #1c1c1c;
+    --text-light: #f5f5f5;
+    --primary-color: #ff7a59;
+    --secondary-color: #333;
+    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --transition: 0.3s ease;
+}
+
+html {
+    padding: 0;
+    margin: 0;
+    background-color: hsl(0, 0%, 20%);
+    overflow: hidden;
+}
+
+body {
+    margin: 0;
+    margin-top: 40px;
+    font-family: 'Montserrat', sans-serif;
+    background: var(--background-dark);
+    color: var(--text-light);
+    line-height: 1.6;
+    overflow-x: hidden;
+    height: 97vh;
+    opacity: 99%;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+#logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color:#ff5722;
+    text-decoration: none;
+}
+#logo:hover {
+    color: #ff7a59;
+}
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+    background: var(--secondary-color);
+    box-shadow: var(--box-shadow);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    opacity: 98%;
+    z-index: 999;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-light);
+    text-decoration: none;
+}
+.logo:hover {
+    color: var(--primary-color);
+}
+.search-bar {
+    flex: 10;
+    margin:0 20px ;
+    padding: 10px;
+    border: none;
+    border-radius: 30px;
+    background: var(--background-dark);
+    color: var(--text-light);
+    outline:#f5f5f5;
+    text-align: left;
+    transition: background var(--transition), box-shadow var(--transition);
+}
+
+.search-bar:focus {
+    background: rgb(0, 0, 0);
+    box-shadow: 0 0 8px rgba(224, 108, 25, 0.426);
+}
+
+.hero-section {
+    text-align: center;
+    padding: 0.5px 20px;
+    background: url('exampleimage.png') no-repeat center center/cover;
+    color: var(--text-light);
+    margin-top: 61px;
+}
+
+.hero-section h1 {
+    margin-bottom: 10px;
+    font-size: 3rem;
+    color: var(--text-light);
+}
+
+.hero-section p {
+    font-size: 1.4rem;
+    color: var(--text-light);
+}
+
+.game-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.game-card {
+    background: var(--secondary-color);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    width: 220px;
+    transition: transform var(--transition), box-shadow var(--transition);
+    box-shadow: var(--box-shadow);
+}
+
+.game-card img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.game-card h3 {
+    margin: 10px 0;
+    color: var(--text-light);
+}
+
+.game-card a {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background: var(--primary-color);
+    color: var(--text-light);
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background var(--transition);
+}
+
+.game-card a:hover {
+    background: #ff5722;
+}
+
+.game-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.footer {
+    text-align: center;
+    padding: 20px;
+    background: var(--secondary-color);
+    color: var(--text-light);
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    margin-top: 200px;
+}
+
+/* Toggle Button Styling */
+.toggle-button {
+    background: #27292c;
+    border: 2px solid var(--primary-color);
+    border-radius: 50px;
+    width: 50px;
+    height: 25px;
+    position: relative;
+    cursor: pointer;
+    transition: background var(--transition);
+}
+
+.toggle-button .toggle-circle {
+    background: var(--primary-color);
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    transition: left var(--transition);
+}
+
+.toggle-button.active {
+    background: var(--primary-color);
+}
+
+.toggle-button.active .toggle-circle {
+    left: 25px;
+    background: #27292c;
+}
+
+/* Light Theme */
+body.light-mode .logo {
+    color: var(--text-dark);
+}
+
+body.light-mode {
+    background: #ff7a5959;
+    color: var(--text-dark);
+}
+
+body.light-mode .navbar {
+    background: var(--background-light);
+    color: var(--text-dark);
+    box-shadow: var(--box-shadow);
+}
+
+body.light-mode .search-bar {
+    background: rgba(0, 0, 0, 0.1);
+    color: var(--text-dark);
+}
+
+body.light-mode .hero-section {
+    background: url('exampleimage_light.png') no-repeat center center/cover;
+    color: var(--text-dark);
+}
+
+body.light-mode .game-card {
+    background: var(--background-light);
+    color: var(--text-dark);
+    box-shadow: var(--box-shadow);
+}
+
+body.light-mode .game-card h3 {
+    color: var(--text-dark);
+}
+
+body.light-mode .game-card a {
+    background: var(--primary-color);
+    color: var(--text-light);
+}
+
+body.light-mode .footer {
+    background: var(--background-light);
+    color: var(--text-dark);
+}
+
+/* Menu Button Styling */
+.menu-button {
+    margin-right: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    display: inline-block;
+    position: relative;
+    padding: 10px;
+    transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.menu-button:hover {
+    transform: scale(1.1);
+}
+
+.menu-icon {
+    width: 35px;
+    height: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.menu-icon .bar {
+    width: 100%;
+    height: 4px;
+    background: var(--text-light);
+    border-radius: 2px;
+    transition: all var(--transition);
+}
+
+/* Active State for Hamburger Icon (Bars to Cross) */
+.menu-button.active .bar1 {
+    transform: rotate(45deg) translate(5px, 5px);
+    background: var(--primary-color);
+}
+
+.menu-button.active .bar2 {
+    opacity: 0;
+}
+
+.menu-button.active .bar3 {
+    transform: rotate(-45deg) translate(5px, -5px);
+    background: var(--primary-color);
+}
+
+/* Menu Content - Initially Hidden */
+.menu-content {
+    position: absolute;
+    top: 70px; /* Adjust according to navbar height */
+    right: 0;
+    background-color: var(--secondary-color);
+    width: 200px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: translateX(100%); /* Hidden off-screen */
+    opacity: 0;
+    pointer-events: none; /* Prevent interaction while hidden */
+    transition: transform var(--transition), opacity var(--transition);
+}
+
+/* Menu Content Visible */
+.menu-content.show {
+    transform: translateX(0); /* Slide in */
+    opacity: 1;
+    pointer-events: all; /* Allow interaction */
+}
+
+/* Menu Links Styling */
+.menu-content ul {
+    list-style: none;
+}
+
+.menu-content ul li {
+    margin: 10px 0;
+}
+
+.menu-content ul li a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 16px;
+    transition: color var(--transition);
+}
+
+.menu-content ul li a:hover {
+    color: var(--primary-color);
+}
+
+/* Optional - Body Class when Menu is Open */
+body.menu-open {
+    overflow: hidden; /* Prevent body scrolling when menu is open */
+}
+
+/* Mobile Mode */
+@media (max-width: 767px) {
+    .game-container {
+        padding: 10px;
+        justify-content: auto;
+        margin-top: 40px;
+    }
+
+    .game-card {
+        padding: 25px;
+        width: 150px;
+    }
+
+    .menu-button {
+        background: transparent;
+        border: none;
+        cursor: pointer;
+    }
+
+    .menu-icon {
+        width: 35px;
+        height: 24px;
+    }
+
+    .menu-icon .bar {
+        width: 100%;
+        height: 4px;
+        background: var(--text-light);
+        border-radius: 2px;
+        transition: all var(--transition);
+    }
+}
