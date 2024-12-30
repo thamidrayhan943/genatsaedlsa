@@ -7,28 +7,76 @@
     <meta name="keywords" content="games, iframe games, play online">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/styles.css">
     <title>NEZ-PLAY - Game</title>
 </head>
 <body>
     <!-- Navbar Section -->
-    <nav class="navbar">
-        <a href="/index.html" class="logo">NEZ-PLAY</a>
-        <button class="menu-button" onclick="toggleMenu()">
-            <div class="menu-icon">
-                <div class="bar bar1"></div>
-                <div class="bar bar2"></div>
-                <div class="bar bar3"></div>
+   <nav class="navbar">
+        <a href="/player/index1.html" class="logo">NEZ-PLAY</a>
+        <input type="text" class="search-bar" placeholder="Find your games...">
+
+
+        <button class="menu-button">
+    <div class="menu-icon">
+        <div class="bar bar1"></div>
+        <div class="bar bar2"></div>
+        <div class="bar bar3"></div>
+    </div>
+    </button>
+
+
+    <div class="menu-content">
+        <!-- Welcome Section -->
+        <div class="section-title">Welcome to your profile (beta)</div>    
+        <!-- Profile Section -->
+        <div class="profile-section">
+            <img src="https://bestanimations.com/Animals/Mammals/Cats/catart/animated-cat-art-gif-26.gif" alt="Avatar">
+            <div class="profile-info">
+                <h3>Preview</h3>
+                <p>Level: 1111 | XP: 95%</p>
             </div>
-        </button>
-        <div class="menu-content">
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Services</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
         </div>
+    
+        <!-- Interactive Features -->
+         <div class="interactive-section">
+            <div class="interactive-item">
+                <span class="label">Allow Ads</span>
+                <div class="toggle-button" id="dark-mode-toggle">
+                    <div class="toggle-circle"></div>
+                </div>
+            </div>
+
+            <div class="interactive-item">
+                <span class="label">Leaderboard Rank</span>
+                <span class="value">#23</span>
+            </div>
+        </div>
+    
+        <!-- Stats Section -->
+        <div class="interactive-section">
+            <div class="interactive-item">
+                <span class="label">Coins Earned</span>
+                <span class="value" id="coin-counter">3,200</span>
+            </div>
+            <div class="interactive-item">
+                <span class="label">Achievements</span>
+                <span class="value">8/10</span>
+            </div>
+            <div class="interactive-item">
+                <span class="label">Daily Challenge</span>
+                <span class="value">Complete 5 games</span>
+            </div>
+        </div>
+    
+        <!-- Footer -->
+        <div class="footer-section">
+            <p>&copy; 2024 NEZ-PLAY. All rights reserved.</p>
+            <p>Terms of Service | Privacy Policy</p>
+        </div>
+    </div>
+    
+        </header>
     </nav>
 
     <!-- Game iframe Section -->
@@ -47,7 +95,7 @@
     <footer class="footer">
         <p>&copy; 2024 NEZ-PLAY. All rights reserved.</p>
     </footer>
+    <script src="/script.js"></script>
     <script src="scripts.js"></script>
-    <script src="script.js"></script>
 </body>
 </html>
