@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
         { name: 'Subway Surfers', imageUrl: 'https://image.api.playstation.com/vulcan/img/cfn/11307x4B5WLoVoIUtdewG4uJ_YuDRTwBxQy0qP8ylgazLLc01PBxbsFG1pGOWmqhZsxnNkrU3GXbdXIowBAstzlrhtQ4LCI4.png', link: 'player/index1.html' },
         { name: 'Subway Surfers', imageUrl: 'https://image.api.playstation.com/vulcan/img/cfn/11307x4B5WLoVoIUtdewG4uJ_YuDRTwBxQy0qP8ylgazLLc01PBxbsFG1pGOWmqhZsxnNkrU3GXbdXIowBAstzlrhtQ4LCI4.png', link: 'player/index1.html' },
         { name: 'Subway Surfers', imageUrl: 'https://image.api.playstation.com/vulcan/img/cfn/11307x4B5WLoVoIUtdewG4uJ_YuDRTwBxQy0qP8ylgazLLc01PBxbsFG1pGOWmqhZsxnNkrU3GXbdXIowBAstzlrhtQ4LCI4.png', link: 'player/index1.html' },
-    // games will be added here
     ];
 
     const gameContainer = document.querySelector('.game-container');
@@ -15,20 +14,24 @@ document.addEventListener('DOMContentLoaded', () => {
             const gameCard = document.createElement('div');
             gameCard.classList.add('game-card');
 
+            // Create link element wrapping the image and title
+            const gameLink = document.createElement('a'); 
+            gameLink.href = game.link; 
+            gameLink.target = '_self'; // Opens in the same tab
+
             const gameImage = document.createElement('img');
             gameImage.src = game.imageUrl;
             gameImage.alt = game.name;
-            gameCard.appendChild(gameImage);
 
             const gameName = document.createElement('h3');
             gameName.textContent = game.name;
-            gameCard.appendChild(gameName);
 
-            const gameLink = document.createElement('a'); 
-            gameLink.href = game.link; 
-            gameLink.target = '_self'; //opens on the same tab
-            gameLink.textContent = 'Play Now'; 
-            gameCard.appendChild(gameLink); 
+            // Append image and title to the link
+            gameLink.appendChild(gameImage);
+            gameLink.appendChild(gameName);
+
+            // Add link to the game card
+            gameCard.appendChild(gameLink);
 
             gameContainer.appendChild(gameCard);
         });
@@ -37,10 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Menu functionality
-    
-
-
-    
     const body = document.body;
     const menuButton = document.querySelector('.menu-button');
     const menuContent = document.querySelector('.menu-content');
@@ -55,6 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
 
 
 // Coin Counter Animation
