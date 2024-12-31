@@ -10,12 +10,14 @@
     <title>NEZ-PLAY</title>
 </head>
 <body>
+
+    <!-- Navbar Section --> 
     <header>
         <nav class="navbar">
-            <a href="/player/index1.html" class="logo">NEZ-PLAY</a>
-            <input type="text" class="search-bar" placeholder="Find your games...">
+            <a href="/player/index1.html" class="logo" aria-label="Go to NEZ-PLAY Home">NEZ-PLAY</a>
+            <input type="text" class="search-bar" placeholder="Find your games..." aria-label="Search games">
 
-            <button class="menu-button">
+            <button class="menu-button" aria-label="Toggle menu">
                 <div class="menu-icon">
                     <div class="bar bar1"></div>
                     <div class="bar bar2"></div>
@@ -25,10 +27,11 @@
 
             <div class="menu-content">
                 <!-- Welcome Section -->
-                <div class="section-title">Welcome to your profile (beta)</div>    
+                <div class="section-title">Welcome to your profile (Beta)</div>    
+
                 <!-- Profile Section -->
                 <div class="profile-section">
-                    <img src="https://bestanimations.com/Animals/Mammals/Cats/catart/animated-cat-art-gif-26.gif" alt="Avatar">
+                    <img src="https://bestanimations.com/Animals/Mammals/Cats/catart/animated-cat-art-gif-26.gif" alt="User Avatar">
                     <div class="profile-info">
                         <h3>Preview</h3>
                         <p>Level: 1111 | XP: 95%</p>
@@ -39,7 +42,7 @@
                 <div class="interactive-section">
                     <div class="interactive-item">
                         <span class="label">Allow Ads</span>
-                        <div class="toggle-button" id="dark-mode-toggle">
+                        <div class="toggle-button" id="ad-toggle">
                             <div class="toggle-circle"></div>
                         </div>
                     </div>
@@ -69,17 +72,18 @@
                 <!-- Footer -->
                 <div class="footer-section">
                     <p>&copy; 2024 NEZ-PLAY. All rights reserved.</p>
-                    <p>Terms of Service | Privacy Policy</p>
+                    <a href="#" aria-label="Terms of Service">Terms of Service</a> | 
+                    <a href="#" aria-label="Privacy Policy">Privacy Policy</a>
                 </div>
             </div>
         </nav>
     </header>
 
     <main>
-        <header class="hero-section">
-            <h1>Welcome to <samp id="logo">NEZ-PLAY</samp>!</h1>
+        <section class="hero-section">
+            <h1>Welcome to <span id="logo">NEZ-PLAY</span>!</h1>
             <p>Pick a game and start playing.</p>
-        </header>
+        </section>
 
         <div class="game-container">
             <!-- Game templates will be dynamically added here -->
@@ -87,9 +91,10 @@
     </main>
 
     <footer class="footer">
-        <p>&copy; 2024 NEZPLAY. All rights reserved.</p>
+        <p>&copy; 2024 NEZ-PLAY. All rights reserved.</p>
     </footer>
 
     <script src="script.js"></script>
+
 </body>
 </html>
