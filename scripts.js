@@ -1,6 +1,6 @@
 // List of games with their respective URLs
 const games = [
-    { name: 'Roblox', url: 'https://files.ufreegame.net/1024/Subway-Surfers-Zurich/' },
+    { name: 'Roblox', url: 'No-game.html' },
     { name: 'Minecraft', url: 'https://files.ufreegame.net/1024/Subway-Surfers-Zurich/' },
     { name: 'Subway Surfers', url: 'https://files.ufreegame.net/1024/Subway-Surfers-Zurich/' }
 ];
