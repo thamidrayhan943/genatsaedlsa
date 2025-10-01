@@ -44,6 +44,11 @@
             </section>
             <section>
                 <h2>Updated games.json</h2>
+                <!--
+                    NOTE FOR FUTURE DEVELOPMENT:
+                    This is a manual process because this is a static website. A more robust solution
+                    would involve a backend server to handle file writing automatically.
+                -->
                 <p>Copy the content below and paste it into the <code>games.json</code> file.</p>
                 <textarea id="json-output" readonly></textarea>
             </section>
@@ -52,6 +57,10 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // NOTE FOR FUTURE DEVELOPMENT:
+            // This password prompt is a basic security measure and is not suitable for a
+            // production environment. A proper backend authentication system should be implemented
+            // for real-world applications.
             const password = prompt("Enter moderator password:");
             if (password === "nez") {
                 document.getElementById("admin-container").style.display = "block";
