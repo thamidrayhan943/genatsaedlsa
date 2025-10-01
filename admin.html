@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body { font-family: 'Montserrat', sans-serif; background-color: #f4f4f9; color: #333; }
+        #admin-container { max-width: 800px; margin: 2rem auto; padding: 2rem; background: #fff; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1, h2 { text-align: center; color: #444; }
+        form { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2rem; }
+        input[type="text"], input[type="url"], input[type="search"] { padding: 0.8rem; border: 1px solid #ccc; border-radius: 4px; }
+        button { padding: 0.8rem 1.2rem; background-color: #007bff; color: #fff; border: none; border-radius: 4px; cursor: pointer; transition: background-color 0.3s; }
+        button:hover { background-color: #0056b3; }
+        .delete-btn { background-color: #dc3545; }
+        .delete-btn:hover { background-color: #c82333; }
+        textarea { width: 100%; height: 200px; margin-top: 1rem; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px; }
+        #games-list { list-style: none; padding: 0; }
+        #games-list li { background: #eee; padding: 0.8rem; margin-bottom: 0.5rem; border-radius: 4px; display: flex; justify-content: space-between; align-items: center; }
+        .game-actions { display: flex; gap: 0.5rem; }
+    </style>
+</head>
+<body>
+    <div id="admin-container" style="display: none;">
+        <header>
+            <h1>Moderator Dashboard</h1>
+        </header>
+        <main>
+            <section id="game-form-section">
+                <h2 id="form-title">Add a New Game</h2>
+                <form id="game-form">
+                    <input type="hidden" id="game-index" value="-1">
+                    <input type="text" id="game-name" placeholder="Game Name" required>
+                    <input type="url" id="game-url" placeholder="Game URL" required>
+                    <input type="url" id="game-image" placeholder="Image URL" required>
+                    <button type="submit" id="submit-btn">Add Game</button>
+                </form>
+            </section>
+            <section>
+                <h2>Current Games</h2>
+                <input type="search" id="search-bar" placeholder="Search for a game...">
+                <ul id="games-list"></ul>
+            </section>
+            <section>
+                <h2>Updated games.json</h2>
+                <p>Copy the content below and paste it into the <code>games.json</code> file.</p>
+                <textarea id="json-output" readonly></textarea>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const password = prompt("Enter moderator password:");
+            if (password === "nez") {
+                document.getElementById("admin-container").style.display = "block";
+                loadCurrentGames();
+            } else {
+                alert("Incorrect password. Access denied.");
+                window.location.href = "index.html";
+            }
+
+            const gameForm = document.getElementById('game-form');
+            const formTitle = document.getElementById('form-title');
+            const submitBtn = document.getElementById('submit-btn');
+            const gameIndexInput = document.getElementById('game-index');
+            const gameNameInput = document.getElementById('game-name');
+            const gameUrlInput = document.getElementById('game-url');
+            const gameImageInput = document.getElementById('game-image');
+
+            const jsonOutput = document.getElementById('json-output');
+            const gamesList = document.getElementById('games-list');
+            const searchBar = document.getElementById('search-bar');
+            let games = [];
+            let filteredGames = [];
+
+            async function loadCurrentGames() {
+                try {
+                    const response = await fetch('games.json');
+                    games = await response.json();
+                    filteredGames = [...games];
+                    displayGames();
+                    updateJsonOutput();
+                } catch (error) {
+                    console.error('Error loading games:', error);
+                    alert('Could not load games.json. Make sure the file exists.');
+                }
+            }
+
+            function updateJsonOutput() {
+                jsonOutput.value = JSON.stringify(games, null, 2);
+            }
+
+            function displayGames() {
+                gamesList.innerHTML = '';
+                filteredGames.forEach((game) => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = game.name;
+
+                    const gameActions = document.createElement('div');
+                    gameActions.classList.add('game-actions');
+
+                    const editBtn = document.createElement('button');
+                    editBtn.textContent = 'Edit';
+                    editBtn.addEventListener('click', () => {
+                        const originalIndex = games.findIndex(g => g.name === game.name);
+                        formTitle.textContent = 'Edit Game';
+                        submitBtn.textContent = 'Update Game';
+                        gameIndexInput.value = originalIndex;
+                        gameNameInput.value = game.name;
+                        gameUrlInput.value = game.url;
+                        gameImageInput.value = game.image;
+                    });
+
+                    const deleteBtn = document.createElement('button');
+                    deleteBtn.textContent = 'Delete';
+                    deleteBtn.classList.add('delete-btn');
+                    deleteBtn.addEventListener('click', () => {
+                        if (confirm(`Are you sure you want to delete ${game.name}?`)) {
+                            const originalIndex = games.findIndex(g => g.name === game.name);
+                            games.splice(originalIndex, 1);
+                            filterGames();
+                            updateJsonOutput();
+                        }
+                    });
+
+                    gameActions.appendChild(editBtn);
+                    gameActions.appendChild(deleteBtn);
+                    listItem.appendChild(gameActions);
+                    gamesList.appendChild(listItem);
+                });
+            }
+
+            function filterGames() {
+                const query = searchBar.value.toLowerCase();
+                filteredGames = games.filter(game => game.name.toLowerCase().includes(query));
+                displayGames();
+            }
+
+            searchBar.addEventListener('input', filterGames);
+
+            gameForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const gameData = {
+                    name: gameNameInput.value,
+                    url: gameUrlInput.value,
+                    image: gameImageInput.value
+                };
+
+                const gameIndex = parseInt(gameIndexInput.value, 10);
+
+                if (gameIndex === -1) { // Add new game
+                    games.push(gameData);
+                } else { // Update existing game
+                    games[gameIndex] = gameData;
+                }
+
+                filterGames();
+                updateJsonOutput();
+                resetForm();
+            });
+
+            function resetForm() {
+                formTitle.textContent = 'Add a New Game';
+                submitBtn.textContent = 'Add Game';
+                gameIndexInput.value = -1;
+                gameForm.reset();
+            }
+        });
+    </script>
+</body>
+</html>
