@@ -2,16 +2,16 @@
     {
         "name": "Roblox",
         "url": "No-game.html",
-        "image": "https://via.placeholder.com/150"
+        "image": "assets/game-placeholder.svg"
     },
     {
         "name": "Minecraft",
         "url": "https://files.ufreegame.net/1024/Subway-Surfers-Zurich/",
-        "image": "https://via.placeholder.com/150"
+        "image": "assets/game-placeholder.svg"
     },
     {
         "name": "Subway Surfers",
         "url": "https://files.ufreegame.net/1024/Subway-Surfers-Zurich/",
-        "image": "https://via.placeholder.com/150"
+        "image": "assets/game-placeholder.svg"
     }
 ]
